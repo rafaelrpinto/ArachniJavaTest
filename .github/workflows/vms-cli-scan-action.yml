@@ -1,0 +1,21 @@
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+
+jobs:
+  VMS-CLI-SCAN:
+    runs-on: ubuntu-latest
+    name: VMS CLI Scan job
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Get VMS-CLI action and perform scan
+        id: vms-cli
+        uses: davidarteaga-globant/VMS-CLI-Public-Action@v1.0.0
+        with:
+          client_name: 'Dev' #Example client name, replace it.
+          project_name: 'Test' #Example project name, replace it.
+          ecosystem: 'VulnerableJavaWebApplication'
+          api_key: ${{ secrets.VMS_API_KEY }}
+      - name: Get the output time of scanning start
+        run: echo "The time was ${{ steps.vms-cli.outputs.time }}"
