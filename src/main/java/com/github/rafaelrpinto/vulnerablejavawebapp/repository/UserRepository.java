@@ -37,11 +37,11 @@ public class UserRepository {
 	 * Creates a new user on the database.
 	 */
 	public void insert(User user) {
-		String sql = "INSERT INTO USER(NAME, EMAIL, PASSWORD) VALUES (?, ?, ?)";
+		String sql1 = "INSERT INTO USER(NAME, EMAIL, PASSWORD) VALUES (?, ?, ?)";
 		KeyHolder holder = new GeneratedKeyHolder();
 		
 		this.jdbcTemplate.update((connection) -> {
-			PreparedStatement pstmt = connection.prepareStatement(sql);
+			PreparedStatement pstmt = connection.prepareStatement(sql1);
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getEmail().toLowerCase().trim());
 			pstmt.setString(3, user.getPassword());
