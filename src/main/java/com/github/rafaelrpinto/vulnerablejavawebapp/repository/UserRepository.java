@@ -55,7 +55,7 @@ public class UserRepository {
 	 * @return The user with the provided ID.
 	 */
 	public User find(int id) {
-		String sql = getBaseQuery() + " WHERE ID = ?";
+		String sql = getBaseQuery() + "WHERE ID = ?";
 		return this.jdbcTemplate.queryForObject(sql, new Object[] { id }, ROW_MAPPER);
 	};
 	
@@ -64,7 +64,7 @@ public class UserRepository {
 	 */
 	public User find(String email) {
 		try {
-			String sql = getBaseQuery() + " WHERE EMAIL = ?";
+			String sql = getBaseQuery() + "WHERE EMAIL = ?";
 			return this.jdbcTemplate.queryForObject(sql, new Object[] { email.toLowerCase().trim() }, ROW_MAPPER);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
